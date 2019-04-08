@@ -56,14 +56,20 @@ namespace Stopwatch
 
         public void Stop()
         {
-            _running = false;
-            _pauses.Clear();
+            if (_running)
+            {
+                _running = false;
+                _pauses.Clear();
+            }
         }
 
         public void Pause()
         {
-            _running = false;
-            _pauses.Add(DateTime.Now.Subtract(_startTime));
+            if (_running)
+            {
+                _running = false;
+                _pauses.Add(DateTime.Now.Subtract(_startTime));
+            }
         }
 
         private void _updateWork()
