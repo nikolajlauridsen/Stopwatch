@@ -30,7 +30,7 @@ namespace Stopwatch
             PauseBtn.Click += (sender, e) => _watch.Pause();
             StopBtn.Click += (sender, e) => _watch.Stop();
 
-            // We don't want to leave our thread hanging in bare nothingness
+            // We don't want to leave our threads hanging in bare nothingness
             this.Closed += (sender, args) =>
             {
                 _watch.Stop();
@@ -64,12 +64,10 @@ namespace Stopwatch
                 if (Keyboard.IsKeyDown(Key.P))
                 {
                     _watch.Pause();
-                } else if (Keyboard.IsKeyDown(Key.S) && !(Keyboard.IsKeyDown(Key.LeftShift) ||
-                                                          Keyboard.IsKeyDown(Key.RightShift)))
+                } else if (Keyboard.IsKeyDown(Key.S))S
                 {
                     _watch.Start();
-                } else if ((Keyboard.IsKeyDown(Key.LeftShift) ||
-                           Keyboard.IsKeyDown(Key.RightShift)) && Keyboard.IsKeyDown(Key.S))
+                } else if (Keyboard.IsKeyDown(Key.R))
                 {
                     _watch.Stop();
                 }
