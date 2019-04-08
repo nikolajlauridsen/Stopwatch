@@ -1,0 +1,18 @@
+﻿<Window x:Class="Stopwatch.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Stopwatch"
+        mc:Ignorable="d"
+        Title="Stopwatch" Height="450" Width="800" Background="#282828" WindowStyle="SingleBorderWindow">
+
+    <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Label DockPanel.Dock="Top" HorizontalAlignment="Center" FontSize="150" Name="timeLbl" Foreground="#779933">00:00:00.00</Label>
+        <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Center">
+            <Button Margin="10" Width="75" Name="StartBtn">Start</Button>
+            <Button Margin="10" Width="75" Name="PauseBtn">Pause</Button>
+            <Button Margin="10" Height="25" Width="75" Name="StopBtn">Stop</Button>
+        </WrapPanel>
+    </DockPanel>
+</Window>
