@@ -10,7 +10,7 @@
 
 
     <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Label DockPanel.Dock="Top" HorizontalAlignment="Center" FontSize="150" Name="timeLbl" Foreground="#779933">00:00:00.00</Label>
+        <Label DockPanel.Dock="Top" Style="{StaticResource DisplayText}" HorizontalAlignment="Center" Name="timeLbl">00:00:00.00</Label>
         <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Center">
             <Button Style="{StaticResource PrettyButton}" Name="StartBtn">Start</Button>
             <Button Style="{StaticResource PrettyButton}" Name="PauseBtn">Pause</Button>

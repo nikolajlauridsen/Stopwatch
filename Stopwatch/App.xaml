@@ -28,5 +28,10 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+        <Style TargetType="Label" x:Key="DisplayText">
+            <Setter Property="FontSize" Value="150"></Setter>
+            <Setter Property="Foreground" Value="#779933"></Setter>
+        </Style>
     </Application.Resources>
 </Application>

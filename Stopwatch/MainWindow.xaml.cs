@@ -40,7 +40,7 @@ namespace Stopwatch
             }
             catch (TaskCanceledException)
             {
-
+                // This occurs when the program is closed, no reason to do anything
             }
             
         }
