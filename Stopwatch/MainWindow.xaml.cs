@@ -64,7 +64,7 @@ namespace Stopwatch
                 if (Keyboard.IsKeyDown(Key.P))
                 {
                     _watch.Pause();
-                } else if (Keyboard.IsKeyDown(Key.S))S
+                } else if (Keyboard.IsKeyDown(Key.S))
                 {
                     _watch.Start();
                 } else if (Keyboard.IsKeyDown(Key.R))
