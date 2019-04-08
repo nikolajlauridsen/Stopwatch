@@ -48,7 +48,7 @@ namespace Stopwatch
             {
                 // This occurs when the program is closed, no reason to do anything
             }
-            
+
         }
 
         private void UpdateLabel(TimeSpan time)
@@ -58,21 +58,33 @@ namespace Stopwatch
 
         private void KeyHandler()
         {
+            bool s_pressed = false;
             while (_listening)
             {
-                Thread.Sleep(50);  // Give the poor CPU a chance
-                if (Keyboard.IsKeyDown(Key.P))
+                Thread.Sleep(50); // Give the poor CPU a chance
+                if (Keyboard.IsKeyDown(Key.S) && !s_pressed)
                 {
-                    _watch.Pause();
-                } else if (Keyboard.IsKeyDown(Key.S))
+                    if (_watch.Running)
+                    {
+                        _watch.Pause();
+                    }
+                    else
+                    {
+                        _watch.Start();
+                    }
+
+                    s_pressed = true;
+                }
+                else if (Keyboard.IsKeyUp(Key.S) && s_pressed)
                 {
-                    _watch.Start();
-                } else if (Keyboard.IsKeyDown(Key.R))
+                    s_pressed = false;
+                }
+                else if (Keyboard.IsKeyDown(Key.R))
                 {
                     _watch.Stop();
                 }
             }
-            
+
         }
     }
 }
