@@ -30,6 +30,9 @@ namespace Stopwatch
             StartBtn.Click += (sender, e) => _watch.Start();
             PauseBtn.Click += (sender, e) => _watch.Pause();
             StopBtn.Click += (sender, e) => _watch.Stop();
+
+            // We don't want to leave our thread hanging in bare nothingness
+            this.Closed += (sender, args) => _watch.Stop();
         }
 
         private void DispatchUpdate(TimeSpan time)
