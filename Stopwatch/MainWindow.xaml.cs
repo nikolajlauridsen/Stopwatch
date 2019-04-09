@@ -25,7 +25,7 @@ namespace Stopwatch
             // Set up high level hooks
             _hooks = new HookManager();
             _hooks.RegisterHook(Key.S, OnSKey);
-            _hooks.RegisterHook(Key.R, OnRKey);
+            _hooks.RegisterHook(Key.R, key => _watch.Reset());
             _hooks.Listen();
 
 
@@ -67,12 +67,6 @@ namespace Stopwatch
             } else {
                 _watch.Start();
             }
-        }
-
-        private void OnRKey(Key key)
-        {
-            _watch.Reset();
-
         }
     }
 }
