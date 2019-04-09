@@ -28,12 +28,12 @@ namespace Stopwatch
             // On clicks
             StartBtn.Click += (sender, e) => _watch.Start();
             PauseBtn.Click += (sender, e) => _watch.Pause();
-            StopBtn.Click += (sender, e) => _watch.Stop();
+            StopBtn.Click += (sender, e) => _watch.Reset();
 
             // We don't want to leave our threads hanging in bare nothingness
             this.Closed += (sender, args) =>
             {
-                _watch.Stop();
+                _watch.Reset();
                 _listening = false;
             };
         }
@@ -81,7 +81,7 @@ namespace Stopwatch
                 }
                 else if (Keyboard.IsKeyDown(Key.R))
                 {
-                    _watch.Stop();
+                    _watch.Reset();
                 }
             }
 

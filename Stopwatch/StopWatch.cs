@@ -54,10 +54,11 @@ namespace Stopwatch
             }
         }
 
-        public void Stop()
+        public void Reset()
         {
             Running = false;
             _pauses.Clear();
+            _updateAction?.Invoke(new TimeSpan(0));
         }
 
         public void Pause()
