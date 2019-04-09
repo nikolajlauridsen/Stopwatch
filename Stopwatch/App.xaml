@@ -4,18 +4,23 @@
              xmlns:local="clr-namespace:Stopwatch"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+
+        <Brush x:Key="PrimaryBack">#282828</Brush>
+        <Brush x:Key="SecondaryBack">#323232</Brush>
+        <Brush x:Key="PrimaryFore">#779933</Brush>
+
         <Style TargetType="Button" x:Key="PrettyButton">
             <Setter Property="Background" Value="Transparent"></Setter>
             <Setter Property="FontSize" Value="16"></Setter>
             <Setter Property="Height" Value="35"></Setter>
             <Setter Property="Width" Value="80"></Setter>
             <Setter Property="Margin" Value="10"></Setter>
-            <Setter Property="Foreground" Value="#779933"></Setter>
+            <Setter Property="Foreground" Value="{StaticResource PrimaryFore}"></Setter>
 
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border CornerRadius="18" Background="{TemplateBinding Background}" BorderThickness="2" BorderBrush="#779933">
+                        <Border CornerRadius="18" Background="{TemplateBinding Background}" BorderThickness="2" BorderBrush="{StaticResource PrimaryFore}">
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"></ContentPresenter>
                         </Border>
                     </ControlTemplate>
@@ -24,14 +29,14 @@
 
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#323232" />
+                    <Setter Property="Background" Value="{StaticResource SecondaryBack}" />
                 </Trigger>
             </Style.Triggers>
         </Style>
 
         <Style TargetType="Label" x:Key="DisplayText">
             <Setter Property="FontSize" Value="150"></Setter>
-            <Setter Property="Foreground" Value="#779933"></Setter>
+            <Setter Property="Foreground" Value="{StaticResource PrimaryFore}"></Setter>
         </Style>
     </Application.Resources>
 </Application>
