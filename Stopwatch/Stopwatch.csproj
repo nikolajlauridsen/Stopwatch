@@ -95,5 +95,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KeyboardHook\KeyboardHook.csproj">
+      <Project>{508f786a-67b1-42a4-bd11-cf3a17e0d9bb}</Project>
+      <Name>KeyboardHook</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

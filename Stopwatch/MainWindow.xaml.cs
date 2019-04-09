@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
+using KeyboardHook;
+
 namespace Stopwatch
 {
     /// <summary>
@@ -12,7 +14,7 @@ namespace Stopwatch
     public partial class MainWindow : Window
     {
         private StopWatch _watch;
-        private bool _listening = true; // Will listen for keystrokes while true
+        private HookManager _hooks;
 
         public MainWindow()
         {
@@ -21,9 +23,11 @@ namespace Stopwatch
             _watch = new StopWatch(DispatchUpdate);
 
             // Set up high level hooks
-            Thread listener = new Thread(KeyHandler);
-            listener.SetApartmentState(ApartmentState.STA);
-            listener.Start();
+            _hooks = new HookManager();
+            _hooks.RegisterHook(Key.S, OnSKey);
+            _hooks.RegisterHook(Key.R, OnRKey);
+            _hooks.Listen();
+
 
             // On clicks
             StartBtn.Click += (sender, e) => _watch.Start();
@@ -34,7 +38,7 @@ namespace Stopwatch
             this.Closed += (sender, args) =>
             {
                 _watch.Reset();
-                _listening = false;
+                _hooks.StopListening();
             };
         }
 
@@ -56,34 +60,18 @@ namespace Stopwatch
             timeLbl.Content = time.ToString(@"hh\:mm\:ss\.ff");
         }
 
-        private void KeyHandler()
+        private void OnSKey(Key key)
         {
-            bool s_pressed = false;
-            while (_listening)
-            {
-                Thread.Sleep(50); // Give the poor CPU a chance
-                if (Keyboard.IsKeyDown(Key.S) && !s_pressed)
-                {
-                    if (_watch.Running)
-                    {
-                        _watch.Pause();
-                    }
-                    else
-                    {
-                        _watch.Start();
-                    }
-
-                    s_pressed = true;
-                }
-                else if (Keyboard.IsKeyUp(Key.S) && s_pressed)
-                {
-                    s_pressed = false;
-                }
-                else if (Keyboard.IsKeyDown(Key.R))
-                {
-                    _watch.Reset();
-                }
+            if (_watch.Running) {
+                _watch.Pause();
+            } else {
+                _watch.Start();
             }
+        }
+
+        private void OnRKey(Key key)
+        {
+            _watch.Reset();
 
         }
     }

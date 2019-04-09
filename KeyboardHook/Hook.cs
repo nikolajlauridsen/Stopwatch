@@ -24,7 +24,7 @@ namespace KeyboardHook
             {
                 _keyAction(TargetKey);
                 _pressed = true;
-            } else if (_pressed)
+            } else if (_pressed && Keyboard.IsKeyUp(TargetKey))
             {
                 _pressed = false;
             }

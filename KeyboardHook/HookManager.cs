@@ -10,9 +10,15 @@ namespace KeyboardHook
 {
     public class HookManager
     {
+        public int GracePeriod = 50;
         private List<Hook> _hooks = new List<Hook>();
         private bool _listening;
-        public int GracePeriod = 50;
+        private ApartmentState _threadApartmentState;
+
+        public HookManager(ApartmentState threadApartmentState = ApartmentState.STA)
+        {
+            _threadApartmentState = threadApartmentState;
+        }
 
         public void RegisterHook(Key targetKey, Action<Key> keyAction, bool singleFire = true)
         {
@@ -29,7 +35,9 @@ namespace KeyboardHook
             if (!_listening)
             {
                 _listening = true;
-                new Thread(checkHooks).Start();
+                Thread t = new Thread(checkHooks);
+                t.SetApartmentState(_threadApartmentState);
+                t.Start();
             }
             else
             {
