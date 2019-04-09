@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stopwatch", "Stopwatch\Stopwatch.csproj", "{63561C60-329E-4FB4-8D30-BA4C8C2D2F6D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyboardHook", "KeyboardHook\KeyboardHook.csproj", "{508F786A-67B1-42A4-BD11-CF3A17E0D9BB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{63561C60-329E-4FB4-8D30-BA4C8C2D2F6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63561C60-329E-4FB4-8D30-BA4C8C2D2F6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63561C60-329E-4FB4-8D30-BA4C8C2D2F6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{508F786A-67B1-42A4-BD11-CF3A17E0D9BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{508F786A-67B1-42A4-BD11-CF3A17E0D9BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{508F786A-67B1-42A4-BD11-CF3A17E0D9BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{508F786A-67B1-42A4-BD11-CF3A17E0D9BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
