@@ -25,7 +25,7 @@ namespace Stopwatch
 
         public int UpdateDelay = 50;
 
-        private bool _running = false;
+        public bool Running { get; private set; }
         private DateTime _startTime;
         private List<TimeSpan> _pauses = new List<TimeSpan>();
         private Action<TimeSpan> _updateAction = null;
@@ -43,10 +43,10 @@ namespace Stopwatch
 
         public void Start()
         {
-            if (!_running)
+            if (!Running)
             {
                 _startTime = DateTime.Now;
-                _running = true;
+                Running = true;
                 if (_updateAction != null)
                 {
                     new Thread(_updateWork).Start();
@@ -56,25 +56,22 @@ namespace Stopwatch
 
         public void Stop()
         {
-            if (_running)
-            {
-                _running = false;
-                _pauses.Clear();
-            }
+            Running = false;
+            _pauses.Clear();
         }
 
         public void Pause()
         {
-            if (_running)
+            if (Running)
             {
-                _running = false;
+                Running = false;
                 _pauses.Add(DateTime.Now.Subtract(_startTime));
             }
         }
 
         private void _updateWork()
         {
-            while (_running)
+            while (Running)
             {
                 _updateAction(Elapsed);
                 Thread.Sleep(UpdateDelay);
