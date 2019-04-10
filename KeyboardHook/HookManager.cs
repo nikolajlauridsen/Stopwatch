@@ -41,6 +41,7 @@ namespace KeyboardHook
             {
                 _listening = true;
                 Thread t = new Thread(checkHooks);
+                t.IsBackground = true;
                 t.SetApartmentState(_threadApartmentState);
                 t.Start();
             }

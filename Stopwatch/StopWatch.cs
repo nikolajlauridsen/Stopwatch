@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -47,7 +48,9 @@ namespace Stopwatch
                 Running = true;
                 if (_updateAction != null)
                 {
-                    new Thread(_updateWork).Start();
+                    Thread t1 = new Thread(_updateWork);
+                    t1.IsBackground = true;
+                    t1.Start();
                 }
             }
         }
