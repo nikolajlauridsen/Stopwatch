@@ -14,10 +14,7 @@ namespace Stopwatch
             get
             {
                 TimeSpan baseSpan = DateTime.Now.Subtract(_startTime);
-                foreach (TimeSpan span in _pauses)
-                {
-                    baseSpan += span;
-                }
+                baseSpan += _pauseSum;
 
                 return baseSpan;
             }
@@ -27,7 +24,7 @@ namespace Stopwatch
 
         public bool Running { get; private set; }
         private DateTime _startTime;
-        private List<TimeSpan> _pauses = new List<TimeSpan>();
+        private TimeSpan _pauseSum = new TimeSpan(0);
         private Action<TimeSpan> _updateAction = null;
 
 
@@ -57,7 +54,7 @@ namespace Stopwatch
         public void Reset()
         {
             Running = false;
-            _pauses.Clear();
+            _pauseSum = new TimeSpan(0);
             _updateAction?.Invoke(new TimeSpan(0));
         }
 
@@ -66,7 +63,7 @@ namespace Stopwatch
             if (Running)
             {
                 Running = false;
-                _pauses.Add(DateTime.Now.Subtract(_startTime));
+                _pauseSum += DateTime.Now.Subtract(_startTime);
             }
         }
 
