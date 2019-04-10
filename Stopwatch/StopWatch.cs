@@ -13,7 +13,8 @@ namespace Stopwatch
         {
             get
             {
-                TimeSpan baseSpan = DateTime.Now.Subtract(_startTime);
+                TimeSpan baseSpan = new TimeSpan(0);
+                if (Running) baseSpan = DateTime.Now.Subtract(_startTime);
                 baseSpan += _pauseSum;
 
                 return baseSpan;
@@ -64,6 +65,7 @@ namespace Stopwatch
             {
                 Running = false;
                 _pauseSum += DateTime.Now.Subtract(_startTime);
+                _updateAction?.Invoke(Elapsed);
             }
         }
 
