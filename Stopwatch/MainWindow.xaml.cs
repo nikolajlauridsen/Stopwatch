@@ -24,15 +24,14 @@ namespace Stopwatch
 
             // Set up high level hooks
             _hooks = new HookManager();
-            _hooks.RegisterHook(Key.S, OnSKey);
-            _hooks.RegisterHook(Key.R, key => _watch.Reset());
+            _hooks.RegisterHook(Key.S, key => Dispatcher.Invoke(() => OnStartPause(_hooks, null)));
+            _hooks.RegisterHook(Key.R, key => Dispatcher.Invoke(() => OnReset(_hooks, null)));
             _hooks.Listen();
 
 
             // On clicks
-            StartBtn.Click += (sender, e) => _watch.Start();
-            PauseBtn.Click += (sender, e) => _watch.Pause();
-            StopBtn.Click += (sender, e) => _watch.Reset();
+            StartBtn.Click += OnStartPause;
+            StopBtn.Click += OnReset;
         }
 
         private void DispatchUpdate(TimeSpan time)
@@ -53,12 +52,24 @@ namespace Stopwatch
             timeLbl.Content = time.ToString(@"hh\:mm\:ss\.ff");
         }
 
-        private void OnSKey(Key key)
+        private void OnReset(object sender, EventArgs e)
         {
-            if (_watch.Running) {
+            _watch.Reset();
+            StartBtn.Content = "Start";
+        }
+
+        private void OnStartPause(object sender, EventArgs e)
+        {
+            if (_watch.Running)
+            {
+                // The watch is running, pause it and switch the button to start
                 _watch.Pause();
-            } else {
+                StartBtn.Content = "Start";
+            } else if (!_watch.Running)
+            {
+                // The watch is paused, start it and change button to pause
                 _watch.Start();
+                StartBtn.Content = "Pause";
             }
         }
     }
