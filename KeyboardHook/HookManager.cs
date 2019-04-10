@@ -25,6 +25,11 @@ namespace KeyboardHook
             _hooks.Add(new Hook(targetKey, keyAction, singleFire));
         }
 
+        public void RegisterHook(Key targetKey, Key modifier, Action<Key> keyAction, bool singleFire = true)
+        {
+            _hooks.Add(new Hook(targetKey, modifier, keyAction, singleFire));
+        }
+
         public void DisableHook(Key targetKey)
         {
             _hooks.Remove(_hooks.Find(hook => hook.TargetKey == targetKey));
