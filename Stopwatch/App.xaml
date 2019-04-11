@@ -38,5 +38,11 @@
             <Setter Property="FontSize" Value="150"></Setter>
             <Setter Property="Foreground" Value="{StaticResource PrimaryFore}"></Setter>
         </Style>
+
+        <Style TargetType="CheckBox" x:Key="DarkCheck">
+            <Setter Property="Foreground" Value="{StaticResource PrimaryFore}"></Setter>
+            <Setter Property="Background" Value="Transparent"></Setter>
+        </Style>
+
     </Application.Resources>
 </Application>

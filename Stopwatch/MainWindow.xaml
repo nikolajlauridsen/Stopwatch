@@ -10,7 +10,12 @@
 
 
     <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Right">
+            <CheckBox DockPanel.Dock="Right" Style="{StaticResource DarkCheck}" Name="BindingsCheck" IsChecked="True">Keybindings</CheckBox>
+        </WrapPanel>
+
         <Label DockPanel.Dock="Top" Style="{StaticResource DisplayText}" HorizontalAlignment="Center" Name="timeLbl">00:00:00.00</Label>
+        
         <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Center">
             <Button Style="{StaticResource PrettyButton}" Name="StartBtn">Start</Button>
             <Button Style="{StaticResource PrettyButton}" Name="StopBtn" >Reset</Button>
