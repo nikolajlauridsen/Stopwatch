@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Stopwatch"
         mc:Ignorable="d"
-        Title="Stopwatch" Height="350" Width="850" Background="{StaticResource PrimaryBack}" WindowStyle="ToolWindow">
+        Title="Stopwatch" Style="{StaticResource WindowStyle}">
 
 
 
     <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
         <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Right">
             <CheckBox DockPanel.Dock="Right" Style="{StaticResource DarkCheck}" Name="BindingsCheck" IsChecked="True">Keybindings</CheckBox>
-            <Button Style="{StaticResource SettingsButton}">
+            <Button Style="{StaticResource SettingsButton}" Name="SettingsBtn">
                 <Image Source="Project files/settings icon.png" ></Image>
             </Button>
         </WrapPanel>
