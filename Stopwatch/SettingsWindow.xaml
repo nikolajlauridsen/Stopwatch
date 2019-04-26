@@ -10,7 +10,7 @@
     <DockPanel Margin="20">
         <WrapPanel HorizontalAlignment="Center">
             <Label Style="{StaticResource SmallText}">Keybindings:</Label>
-            <CheckBox VerticalAlignment="Center" Margin="5,4,0,0"></CheckBox>
+            <CheckBox VerticalAlignment="Center" Margin="5,4,0,0" Name="KeybindingsToggle" IsChecked="True"></CheckBox>
         </WrapPanel>
     </DockPanel>
 </Window>

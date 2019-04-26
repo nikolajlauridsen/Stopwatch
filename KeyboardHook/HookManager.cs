@@ -12,7 +12,7 @@ namespace KeyboardHook
     {
         public int GracePeriod = 50;
         private List<Hook> _hooks = new List<Hook>();
-        private bool _listening;
+        public bool Listening { get; private set; }
         private ApartmentState _threadApartmentState;
 
         public HookManager(ApartmentState threadApartmentState = ApartmentState.STA)
@@ -37,9 +37,9 @@ namespace KeyboardHook
 
         public void Listen()
         {
-            if (!_listening)
+            if (!Listening)
             {
-                _listening = true;
+                Listening = true;
                 Thread t = new Thread(checkHooks);
                 t.IsBackground = true;
                 t.SetApartmentState(_threadApartmentState);
@@ -54,7 +54,7 @@ namespace KeyboardHook
 
         public void StopListening()
         {
-            _listening = false;
+            Listening = false;
         }
 
         public void ClearHooks()
@@ -64,7 +64,7 @@ namespace KeyboardHook
 
         private void checkHooks()
         {
-            while (_listening)
+            while (Listening)
             {
                 Thread.Sleep(GracePeriod);
                 foreach (Hook hook in _hooks) {

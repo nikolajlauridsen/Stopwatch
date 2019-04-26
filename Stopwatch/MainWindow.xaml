@@ -11,7 +11,6 @@
 
     <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
         <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Right">
-            <CheckBox DockPanel.Dock="Right" Style="{StaticResource DarkCheck}" Name="BindingsCheck" IsChecked="True">Keybindings</CheckBox>
             <Button Style="{StaticResource SettingsButton}" Name="SettingsBtn">
                 <Image Source="Project files/settings icon.png" ></Image>
             </Button>

@@ -32,10 +32,7 @@ namespace Stopwatch
             // On clicks
             StartBtn.Click += OnStartPause;
             StopBtn.Click += OnReset;
-            SettingsBtn.Click += (sender, e) => new SettingsWindow().Show();
-
-            BindingsCheck.Checked += (sender, e) => _hooks.Listen();
-            BindingsCheck.Unchecked += (sender, e) => _hooks.StopListening();
+            SettingsBtn.Click += (sender, e) => new SettingsWindow(_hooks).Show();
     }
 
         private void DispatchUpdate(TimeSpan time)

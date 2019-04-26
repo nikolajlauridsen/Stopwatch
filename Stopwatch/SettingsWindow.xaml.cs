@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+using KeyboardHook;
+
 namespace Stopwatch
 {
     /// <summary>
@@ -19,9 +21,15 @@ namespace Stopwatch
     /// </summary>
     public partial class SettingsWindow : Window
     {
-        public SettingsWindow()
+        private HookManager _hooks;
+        public SettingsWindow(HookManager hooks)
         {
             InitializeComponent();
+            _hooks = hooks;
+
+            KeybindingsToggle.IsChecked = hooks.Listening;
+            KeybindingsToggle.Checked += (sender, e) => _hooks.Listen();
+            KeybindingsToggle.Unchecked += (sender, e) => _hooks.StopListening();
         }
     }
 }
