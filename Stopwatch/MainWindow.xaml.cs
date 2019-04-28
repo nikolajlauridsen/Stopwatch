@@ -22,7 +22,8 @@ namespace Stopwatch
             InitializeComponent();
 
             _watch = new StopWatch(DispatchUpdate);
-            
+            _watch.SetMilisecondDigits(Settings.Default.MiliDigits);
+            timeLbl.Content = _watch.Elapsed.ToString(_watch.FormatString);
             // Set up high level hooks
             _hooks = new HookManager();
             _hooks.RegisterHook(Key.S, key => Dispatcher.Invoke(() => OnStartPause(_hooks, null)));
@@ -35,7 +36,7 @@ namespace Stopwatch
             // On clicks
             StartBtn.Click += OnStartPause;
             StopBtn.Click += OnReset;
-            SettingsBtn.Click += (sender, e) => new SettingsWindow(_hooks).Show();
+            SettingsBtn.Click += (sender, e) => new SettingsWindow(_watch, _hooks).Show();
     }
 
         private void DispatchUpdate(TimeSpan time)
@@ -53,7 +54,7 @@ namespace Stopwatch
 
         private void UpdateLabel(TimeSpan time)
         {
-            timeLbl.Content = time.ToString(@"hh\:mm\:ss\.ff");
+            timeLbl.Content = time.ToString(_watch.FormatString);
         }
 
         private void OnReset(object sender, EventArgs e)

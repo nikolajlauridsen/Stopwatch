@@ -8,9 +8,19 @@
         Title="Settings" Style="{StaticResource WindowStyle}" Width="600">
 
     <DockPanel Margin="20">
-        <WrapPanel HorizontalAlignment="Center">
+        <WrapPanel HorizontalAlignment="Center" DockPanel.Dock="Top">
             <Label Style="{StaticResource SmallText}">Keybindings:</Label>
             <CheckBox VerticalAlignment="Center" Margin="5,4,0,0" Name="KeybindingsToggle" IsChecked="True"></CheckBox>
+        </WrapPanel>
+        
+        <WrapPanel HorizontalAlignment="Center" DockPanel.Dock="Top">
+            <Label Style="{StaticResource SmallText}">Milliseconds digits: </Label>
+            <ComboBox Name="DigitsBox">
+                <ComboBoxItem>0</ComboBoxItem>
+                <ComboBoxItem>1</ComboBoxItem>
+                <ComboBoxItem>2</ComboBoxItem>
+                <ComboBoxItem>3</ComboBoxItem>
+            </ComboBox>
         </WrapPanel>
     </DockPanel>
 </Window>

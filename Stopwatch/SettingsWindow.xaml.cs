@@ -23,12 +23,16 @@ namespace Stopwatch
     public partial class SettingsWindow : Window
     {
         private HookManager _hooks;
-        public SettingsWindow(HookManager hooks)
+        private StopWatch _watch;
+        public SettingsWindow(StopWatch watch, HookManager hooks)
         {
             InitializeComponent();
             _hooks = hooks;
+            _watch = watch;
 
             KeybindingsToggle.IsChecked = hooks.Listening;
+            DigitsBox.SelectedIndex = Settings.Default.MiliDigits;
+
             KeybindingsToggle.Checked += (sender, e) =>
             {
                 Settings.Default.GlobalKeybinds = true;
@@ -41,6 +45,15 @@ namespace Stopwatch
                 Settings.Default.GlobalKeybinds = false;
                 Settings.Default.Save();
                 _hooks.StopListening();
+            };
+
+            DigitsBox.SelectionChanged += (sender, e) =>
+            {
+                // Jesus christ this is ugly and smells, but ey, it works
+                int digits = int.Parse(((ComboBoxItem) DigitsBox.SelectedItem).Content.ToString());
+                Settings.Default.MiliDigits = digits;
+                Settings.Default.Save();
+                _watch.SetMilisecondDigits(digits);
             };
         }
     }

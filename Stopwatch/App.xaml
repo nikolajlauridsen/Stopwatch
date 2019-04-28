@@ -46,7 +46,7 @@
             <Setter Property="Height" Value="30"></Setter>
             <Setter Property="Background" Value="Transparent"></Setter>
             <Setter Property="BorderBrush" Value="Transparent"></Setter>
-            <Setter Property="Margin" Value="0,0,-40,0"></Setter>
+             <!-- <Setter Property="Margin" Value="0,0,-40,0"></Setter> -->
 
             <Setter Property="Template">
                 <Setter.Value>

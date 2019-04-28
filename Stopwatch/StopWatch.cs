@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Stopwatch
 {
-    class StopWatch
+    public class StopWatch
     {
         public TimeSpan Elapsed
         {
@@ -23,6 +23,7 @@ namespace Stopwatch
         }
 
         public int UpdateDelay = 50;
+        public string FormatString = @"hh\:mm\:ss\.ff";
 
         public bool Running { get; private set; }
         private DateTime _startTime;
@@ -72,6 +73,20 @@ namespace Stopwatch
             }
         }
 
+        public void SetMilisecondDigits(int digits)
+        {
+            if (digits == 0) {
+                FormatString = @"hh\:mm\:ss";
+            } else {
+                StringBuilder formatBuilder = new StringBuilder(@"hh\:mm\:ss\.");
+                for (int i = 0; i < digits; i++) {
+                    formatBuilder.Append("f");
+                }
+
+                FormatString = formatBuilder.ToString();
+            }
+        }
+
         private void _updateWork()
         {
             while (Running)
@@ -80,7 +95,6 @@ namespace Stopwatch
                 Thread.Sleep(UpdateDelay);
             }
         }
-
 
     }
 }
