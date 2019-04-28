@@ -7,20 +7,26 @@
         mc:Ignorable="d"
         Title="Settings" Style="{StaticResource WindowStyle}" Width="600">
 
-    <DockPanel Margin="20">
-        <WrapPanel HorizontalAlignment="Center" DockPanel.Dock="Top">
-            <Label Style="{StaticResource SmallText}">Keybindings:</Label>
+    <DockPanel Margin="20" VerticalAlignment="Center">
+        <WrapPanel HorizontalAlignment="Center" DockPanel.Dock="Top" Margin="5">
+            <Label Style="{StaticResource SmallText}">Keybindings</Label>
             <CheckBox VerticalAlignment="Center" Margin="5,4,0,0" Name="KeybindingsToggle" IsChecked="True"></CheckBox>
         </WrapPanel>
         
-        <WrapPanel HorizontalAlignment="Center" DockPanel.Dock="Top">
-            <Label Style="{StaticResource SmallText}">Milliseconds digits: </Label>
+        <WrapPanel HorizontalAlignment="Center" DockPanel.Dock="Top" Margin="5">
+            <Label Style="{StaticResource SmallText}">Milliseconds digits</Label>
             <ComboBox Name="DigitsBox">
                 <ComboBoxItem>0</ComboBoxItem>
                 <ComboBoxItem>1</ComboBoxItem>
                 <ComboBoxItem>2</ComboBoxItem>
                 <ComboBoxItem>3</ComboBoxItem>
             </ComboBox>
+        </WrapPanel>
+
+        <WrapPanel HorizontalAlignment="Center" Margin="5">
+            <Label Style="{StaticResource SmallText}">Update delay</Label>
+            <TextBox Width="40" Height="25" Name="DelayBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">50</TextBox>
+            <Label Style="{StaticResource SmallText}">Milliseconds</Label>
         </WrapPanel>
     </DockPanel>
 </Window>

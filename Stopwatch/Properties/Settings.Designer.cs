@@ -46,5 +46,17 @@ namespace Stopwatch.Properties {
                 this["MiliDigits"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public int UpdateDelay {
+            get {
+                return ((int)(this["UpdateDelay"]));
+            }
+            set {
+                this["UpdateDelay"] = value;
+            }
+        }
     }
 }

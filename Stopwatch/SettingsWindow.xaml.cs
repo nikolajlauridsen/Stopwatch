@@ -32,18 +32,17 @@ namespace Stopwatch
 
             KeybindingsToggle.IsChecked = hooks.Listening;
             DigitsBox.SelectedIndex = Settings.Default.MiliDigits;
+            DelayBox.Text = Settings.Default.UpdateDelay.ToString();
 
             KeybindingsToggle.Checked += (sender, e) =>
             {
                 Settings.Default.GlobalKeybinds = true;
-                Settings.Default.Save();
                 _hooks.Listen();
             };
 
             KeybindingsToggle.Unchecked += (sender, e) =>
             {
                 Settings.Default.GlobalKeybinds = false;
-                Settings.Default.Save();
                 _hooks.StopListening();
             };
 
@@ -52,9 +51,20 @@ namespace Stopwatch
                 // Jesus christ this is ugly and smells, but ey, it works
                 int digits = int.Parse(((ComboBoxItem) DigitsBox.SelectedItem).Content.ToString());
                 Settings.Default.MiliDigits = digits;
-                Settings.Default.Save();
                 _watch.SetMilisecondDigits(digits);
             };
+
+            DelayBox.TextChanged += (sender, e) =>
+            {
+                int milli;
+                if (int.TryParse(DelayBox.Text, out milli))
+                {
+                    _watch.UpdateDelay = milli;
+                    Settings.Default.UpdateDelay = milli;
+                }
+            };
+
+            this.Closed += (sender, e) => Settings.Default.Save();
         }
     }
 }
