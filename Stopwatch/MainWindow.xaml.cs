@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Input;
 
 using KeyboardHook;
+using Stopwatch.Properties;
 
 namespace Stopwatch
 {
@@ -21,13 +22,15 @@ namespace Stopwatch
             InitializeComponent();
 
             _watch = new StopWatch(DispatchUpdate);
-
+            
             // Set up high level hooks
             _hooks = new HookManager();
             _hooks.RegisterHook(Key.S, key => Dispatcher.Invoke(() => OnStartPause(_hooks, null)));
             _hooks.RegisterHook(Key.R, key => Dispatcher.Invoke(() => OnReset(_hooks, null)));
-            _hooks.Listen();
-
+            if (Settings.Default.GlobalKeybinds)
+            {
+                _hooks.Listen();
+            }
 
             // On clicks
             StartBtn.Click += OnStartPause;

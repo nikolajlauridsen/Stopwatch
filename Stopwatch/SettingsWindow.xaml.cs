@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 using KeyboardHook;
+using Stopwatch.Properties;
 
 namespace Stopwatch
 {
@@ -28,8 +29,19 @@ namespace Stopwatch
             _hooks = hooks;
 
             KeybindingsToggle.IsChecked = hooks.Listening;
-            KeybindingsToggle.Checked += (sender, e) => _hooks.Listen();
-            KeybindingsToggle.Unchecked += (sender, e) => _hooks.StopListening();
+            KeybindingsToggle.Checked += (sender, e) =>
+            {
+                Settings.Default.GlobalKeybinds = true;
+                Settings.Default.Save();
+                _hooks.Listen();
+            };
+
+            KeybindingsToggle.Unchecked += (sender, e) =>
+            {
+                Settings.Default.GlobalKeybinds = false;
+                Settings.Default.Save();
+                _hooks.StopListening();
+            };
         }
     }
 }
