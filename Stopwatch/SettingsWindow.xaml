@@ -14,12 +14,12 @@
         </WrapPanel>
         
         <WrapPanel HorizontalAlignment="Center" DockPanel.Dock="Top" Margin="5">
-            <Label Style="{StaticResource SmallText}">Milliseconds digits</Label>
-            <ComboBox Name="DigitsBox">
-                <ComboBoxItem>0</ComboBoxItem>
-                <ComboBoxItem>1</ComboBoxItem>
-                <ComboBoxItem>2</ComboBoxItem>
-                <ComboBoxItem>3</ComboBoxItem>
+            <Label Style="{StaticResource SmallText}" Margin="5">Milliseconds digits</Label>
+            <ComboBox Name="DigitsBox" Style="{StaticResource DropDown}">
+                <ComboBoxItem Foreground="{StaticResource PrimaryBack}">0</ComboBoxItem>
+                <ComboBoxItem Foreground="{StaticResource PrimaryBack}">1</ComboBoxItem>
+                <ComboBoxItem Foreground="{StaticResource PrimaryBack}">2</ComboBoxItem>
+                <ComboBoxItem Foreground="{StaticResource PrimaryBack}">3</ComboBoxItem>
             </ComboBox>
         </WrapPanel>
 
