@@ -25,7 +25,7 @@
 
         <WrapPanel HorizontalAlignment="Center" Margin="5">
             <Label Style="{StaticResource SmallText}">Update delay</Label>
-            <TextBox Width="40" Height="25" Name="DelayBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">50</TextBox>
+            <TextBox Style="{StaticResource TextInput}"  Name="DelayBox" HorizontalContentAlignment="Center" VerticalContentAlignment="Center">50</TextBox>
             <Label Style="{StaticResource SmallText}">Milliseconds</Label>
         </WrapPanel>
     </DockPanel>

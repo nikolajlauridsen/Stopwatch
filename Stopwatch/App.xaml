@@ -133,5 +133,25 @@
             </Style.Triggers>
         </Style>
 
+        <Style x:Key="TextInput" TargetType="TextBox">
+            <Setter Property="Background" Value="Transparent"></Setter>
+            <Setter Property="Foreground" Value="{StaticResource PrimaryFore}"></Setter>
+            <Setter Property="Width" Value="50"></Setter>
+            <Setter Property="Height" Value="30"></Setter>
+            <Setter Property="BorderThickness" Value="1"></Setter>
+            <Setter Property="BorderBrush" Value="{StaticResource PrimaryFore}"></Setter>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <!-- I still find it incredibly weird that you must define your own ControlTemplate
+                        But hey, at least it gives me a circular hover color which is nice :^) -->
+                        <Border CornerRadius="8" Background="{TemplateBinding Background}" BorderThickness="1" BorderBrush="{StaticResource PrimaryFore}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" ></ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Application.Resources>
 </Application>
