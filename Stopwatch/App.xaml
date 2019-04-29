@@ -77,11 +77,6 @@
             <Setter Property="Foreground" Value="{StaticResource PrimaryFore}"></Setter>
         </Style>
 
-        <Style TargetType="CheckBox" x:Key="DarkCheck">
-            <Setter Property="Foreground" Value="{StaticResource PrimaryFore}"></Setter>
-            <Setter Property="Background" Value="Transparent"></Setter>
-        </Style>
-
         <Style x:Key="DropDown" TargetType="{x:Type ComboBox}">
             <Setter Property="Foreground" Value="{StaticResource PrimaryFore}"></Setter>
             <Setter Property="Height" Value="30"></Setter>
@@ -136,22 +131,75 @@
         <Style x:Key="TextInput" TargetType="TextBox">
             <Setter Property="Background" Value="Transparent"></Setter>
             <Setter Property="Foreground" Value="{StaticResource PrimaryFore}"></Setter>
-            <Setter Property="Width" Value="50"></Setter>
-            <Setter Property="Height" Value="30"></Setter>
-            <Setter Property="BorderThickness" Value="1"></Setter>
-            <Setter Property="BorderBrush" Value="{StaticResource PrimaryFore}"></Setter>
+            <Setter Property="Width" Value="40"></Setter>
+            <Setter Property="Height" Value="25"></Setter>
+            <Setter Property="CaretBrush" Value="{StaticResource PrimaryFore}"></Setter>
 
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="TextBox">
-                        <!-- I still find it incredibly weird that you must define your own ControlTemplate
-                        But hey, at least it gives me a circular hover color which is nice :^) -->
-                        <Border CornerRadius="8" Background="{TemplateBinding Background}" BorderThickness="1" BorderBrush="{StaticResource PrimaryFore}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" ></ContentPresenter>
+                    <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                        <Border Background="{TemplateBinding Background}" 
+                                x:Name="Bd" BorderBrush="{StaticResource PrimaryFore}"
+                                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="6">
+                            <ScrollViewer x:Name="PART_ContentHost"/>
                         </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" TargetName="Bd"/>
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                            </Trigger>
+                            <Trigger Property="Width" Value="Auto">
+                                <Setter Property="MinWidth" Value="100"/>
+                            </Trigger>
+                            <Trigger Property="Height" Value="Auto">
+                                <Setter Property="MinHeight" Value="20"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style x:Key="DarkCheck" TargetType="{x:Type CheckBox}">
+            <Setter Property="SnapsToDevicePixels" Value="true"/>
+            <Setter Property="OverridesDefaultStyle" Value="true"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                        <BulletDecorator Background="Transparent">
+                            <BulletDecorator.Bullet>
+                                <Border x:Name="Border" Width="15" Height="15" CornerRadius="0" Background="Transparent" BorderThickness="1" BorderBrush="{StaticResource PrimaryFore}">
+                                    <Path Width="7" Height="7" x:Name="CheckMark" SnapsToDevicePixels="False"  Stroke="{StaticResource PrimaryFore}" StrokeThickness="2" Data="M 0 0 L 7 7 M 0 7 L 7 0" />
+                                </Border>
+                            </BulletDecorator.Bullet>
+
+                            <ContentPresenter Margin="4,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left" RecognizesAccessKey="True"/>
+                        </BulletDecorator>
+                        
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="false">
+                                <Setter TargetName="CheckMark" Property="Visibility" Value="Collapsed"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="{x:Null}">
+                                <Setter TargetName="CheckMark" Property="Data" Value="M 0 7 L 7 0" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter TargetName="Border" Property="Background" Value="{StaticResource SecondaryBack}" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="true">
+                                <Setter TargetName="Border" Property="Background" Value="{StaticResource PrimaryFore}" />
+                                <Setter TargetName="CheckMark" Property="Stroke" Value="{StaticResource PrimaryBack}"></Setter>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false"> <!-- Not used for now --> 
+                                <Setter TargetName="Border" Property="Background" Value="#EEEEEE" />
+                                <Setter TargetName="Border" Property="BorderBrush" Value="#AAAAAA" />
+                                <Setter Property="Foreground" Value="#888888"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </Application.Resources>
 </Application>
