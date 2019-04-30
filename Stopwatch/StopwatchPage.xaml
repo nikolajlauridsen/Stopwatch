@@ -1,0 +1,19 @@
+﻿<Page x:Class="Stopwatch.StopwatchPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Stopwatch"
+      mc:Ignorable="d" 
+      Title="StopwatchPage" Style="{StaticResource PageStyle}">
+
+    <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Label DockPanel.Dock="Top" Style="{StaticResource DisplayText}" HorizontalAlignment="Center" Name="timeLbl">00:00:00.00</Label>
+
+        <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Center">
+            <Button Style="{StaticResource PrettyButton}" Name="StartBtn">Start</Button>
+            <Button Style="{StaticResource PrettyButton}" Name="StopBtn" >Reset</Button>
+
+        </WrapPanel>
+    </DockPanel>
+</Page>

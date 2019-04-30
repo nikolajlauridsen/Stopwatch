@@ -16,13 +16,7 @@
             </Button>
         </WrapPanel>
 
-        <Label DockPanel.Dock="Top" Style="{StaticResource DisplayText}" HorizontalAlignment="Center" Name="timeLbl">00:00:00.00</Label>
-        
-        <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Center">
-            <Button Style="{StaticResource PrettyButton}" Name="StartBtn">Start</Button>
-            <Button Style="{StaticResource PrettyButton}" Name="StopBtn" >Reset</Button>
-
-        </WrapPanel>
+        <Frame Name="ContentFame" NavigationUIVisibility="Hidden"></Frame>
     </DockPanel>
 </Window>
 

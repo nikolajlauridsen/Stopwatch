@@ -37,6 +37,11 @@ namespace Timers
 
         }
 
+        public void SetUpdateEvent(Action<TimeSpan> updateAction)
+        {
+            _updateAction = updateAction;
+        }
+
         public void Start()
         {
             if (!Running)
