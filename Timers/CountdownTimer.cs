@@ -12,7 +12,7 @@ namespace Timers
     {
         public TimeSpan Remaining
         {
-            get { return _endTime.Subtract(_endTime); }
+            get { return _endTime.Subtract(DateTime.Now); }
         }
 
         public int UpdateDelay = 50;
@@ -48,6 +48,7 @@ namespace Timers
         {
             _startTime = DateTime.Now;
             _endTime = _startTime.Add(Duration);
+            Running = true;
             if (_updateAction != null)
             {
                 Thread updateThread = new Thread(_updateWork);
@@ -55,6 +56,19 @@ namespace Timers
                 updateThread.Start();
             }
         }
+
+        public void Start(int hours, int minutes, int seconds)
+        {
+            SetDuration(hours, minutes, seconds);
+            Start();
+        }
+
+        public void Start(TimeSpan duration)
+        {
+            SetDuration(Duration);
+            Start();
+        }
+
 
         private void _updateWork()
         {
