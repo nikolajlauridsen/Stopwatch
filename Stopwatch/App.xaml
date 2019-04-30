@@ -17,8 +17,6 @@
         </Style>
 
         <Style TargetType="Page" x:Key="PageStyle">
-            <Setter Property="Height" Value="350"></Setter>
-            <Setter Property="Width" Value="850"></Setter>
             <Setter Property="Background" Value="{StaticResource PrimaryBack}"></Setter>
         </Style>
 
