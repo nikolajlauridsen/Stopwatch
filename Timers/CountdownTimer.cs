@@ -19,6 +19,21 @@ namespace Timers
 
         public bool Running { get; private set; }
 
+        public bool Finished
+        {
+            get
+            {
+                if (DateTime.Now >= _endTime)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
         private DateTime _startTime;
         private DateTime _endTime;
         public TimeSpan Duration { get; private set; }
