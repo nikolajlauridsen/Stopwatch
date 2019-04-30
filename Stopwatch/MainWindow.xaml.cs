@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Input;
 
 using KeyboardHook;
+using Timers;
 using Stopwatch.Properties;
 
 namespace Stopwatch

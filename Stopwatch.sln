@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stopwatch", "Stopwatch\Stop
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyboardHook", "KeyboardHook\KeyboardHook.csproj", "{508F786A-67B1-42A4-BD11-CF3A17E0D9BB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Timers", "Timers\Timers.csproj", "{C6E5B920-A93B-49C0-B446-3FEDAA9B0345}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{508F786A-67B1-42A4-BD11-CF3A17E0D9BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{508F786A-67B1-42A4-BD11-CF3A17E0D9BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{508F786A-67B1-42A4-BD11-CF3A17E0D9BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6E5B920-A93B-49C0-B446-3FEDAA9B0345}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6E5B920-A93B-49C0-B446-3FEDAA9B0345}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6E5B920-A93B-49C0-B446-3FEDAA9B0345}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6E5B920-A93B-49C0-B446-3FEDAA9B0345}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

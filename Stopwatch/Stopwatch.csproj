@@ -58,7 +58,6 @@
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="StopWatch.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -106,6 +105,10 @@
     <ProjectReference Include="..\KeyboardHook\KeyboardHook.csproj">
       <Project>{508f786a-67b1-42a4-bd11-cf3a17e0d9bb}</Project>
       <Name>KeyboardHook</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Timers\Timers.csproj">
+      <Project>{c6e5b920-a93b-49c0-b446-3fedaa9b0345}</Project>
+      <Name>Timers</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
