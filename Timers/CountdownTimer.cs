@@ -31,7 +31,6 @@ namespace Timers
 
         public CountdownTimer() : this(null)
         {
-
         }
 
         public void SetDuration(int hours, int minutes, int seconds)
@@ -69,6 +68,11 @@ namespace Timers
             Start();
         }
 
+        public void Pause()
+        {
+            Running = false;
+            Duration = Remaining;
+        }
 
         private void _updateWork()
         {
