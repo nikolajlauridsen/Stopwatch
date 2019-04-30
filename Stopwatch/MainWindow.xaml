@@ -11,7 +11,7 @@
 
     <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center">
         <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Right">
-            <Button Style="{StaticResource SettingsButton}" Name="SettingsBtn">
+            <Button Style="{StaticResource SettingsButton}" Name="SettingsBtn" Margin="10">
                 <Image Source="Project files/settings icon.png" ></Image>
             </Button>
         </WrapPanel>
