@@ -1,0 +1,26 @@
+﻿<Page x:Class="Stopwatch.CountdownPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Stopwatch"
+      mc:Ignorable="d" 
+      Style="{StaticResource PageStyle}"
+      Title="CountdownPage">
+
+    <DockPanel>
+        <WrapPanel HorizontalAlignment="Center" DockPanel.Dock="Top">
+            <TextBox Name="HoursBox" Style="{StaticResource CountDownBox}" Width="Auto" MinWidth="160">20</TextBox>
+            <Label Style="{StaticResource DisplayText}">:</Label>
+            <TextBox Name="MinutesBox" Style="{StaticResource CountDownBox}">20</TextBox>
+            <Label Style="{StaticResource DisplayText}">:</Label>
+            <TextBox Name="SecondsBox" Style="{StaticResource CountDownBox}">20</TextBox>
+
+        </WrapPanel>
+
+        <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Center">
+            <Button Style="{StaticResource PrettyButton}" Name="StartBtn">Start</Button>
+            <Button Style="{StaticResource PrettyButton}" Name="ReseBtn">Reset</Button>
+        </WrapPanel>
+    </DockPanel>
+</Page>

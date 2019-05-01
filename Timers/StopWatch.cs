@@ -95,6 +95,7 @@ namespace Timers
                 _updateAction(Elapsed);
                 Thread.Sleep(UpdateDelay);
             }
+
         }
 
     }
