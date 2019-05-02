@@ -4,20 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Stopwatch"
-        mc:Ignorable="d" SizeToContent="WidthAndHeight"
+        mc:Ignorable="d" SizeToContent="WidthAndHeight" MinWidth="730" MinHeight="380"
         Title="Stopwatch" Style="{StaticResource WindowStyle}">
 
 
-
-    <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,10,20,10">
-        <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Right">
+    <StackPanel>
+        <WrapPanel HorizontalAlignment="Right" Margin="0,5,15,0">
+            <Button Style="{StaticResource PrettyButton}" Width="Auto" MinWidth="80" Name="SwapBtn">Timer</Button>
             <Button Style="{StaticResource SettingsButton}" Name="SettingsBtn">
                 <Image Source="Project files/settings icon.png" ></Image>
             </Button>
         </WrapPanel>
-
-        <Frame Name="ContentFame" NavigationUIVisibility="Hidden"></Frame>
-    </DockPanel>
+        <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,10,20,10">
+            <Frame Name="ContentFrame" NavigationUIVisibility="Hidden"></Frame>
+        </DockPanel>
+    </StackPanel>
 </Window>
 
 
