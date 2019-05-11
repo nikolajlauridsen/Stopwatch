@@ -81,7 +81,7 @@ namespace Stopwatch
         private static bool isMinutesSeconds(string str)
         {
             int input;
-            return int.TryParse(str, out input) && input >= 0 && input <= 60;
+            return int.TryParse(str, out input) && input >= 0 && input <= 59;
         }
 
         private static bool IsHours(string str)
