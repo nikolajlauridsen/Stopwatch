@@ -53,6 +53,7 @@ namespace Stopwatch
                 int digits = int.Parse(((ComboBoxItem) DigitsBox.SelectedItem).Content.ToString());
                 Settings.Default.MiliDigits = digits;
                 _watch.SetMilisecondDigits(digits);
+                _watch.ForceUpdate();
             };
 
             DelayBox.TextChanged += (sender, e) =>

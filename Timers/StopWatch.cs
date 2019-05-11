@@ -88,6 +88,11 @@ namespace Timers
             }
         }
 
+        public void ForceUpdate()
+        {
+            _updateAction?.Invoke(Elapsed);
+        }
+
         private void _updateWork()
         {
             while (Running)
