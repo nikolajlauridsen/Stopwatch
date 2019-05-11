@@ -10,10 +10,10 @@
 
     <DockPanel>
         <WrapPanel HorizontalAlignment="Center" DockPanel.Dock="Top">
-            <TextBox Name="HoursBox" Style="{StaticResource CountDownBox}" Width="Auto" MinWidth="160">20</TextBox>
-            <Label Style="{StaticResource DisplayText}">:</Label>
+            <TextBox Name="HoursBox" Style="{StaticResource CountDownBox}">20</TextBox>
+            <Label Style="{StaticResource DisplayText}" Margin="0,-20,0,0">:</Label>
             <TextBox Name="MinutesBox" Style="{StaticResource CountDownBox}">20</TextBox>
-            <Label Style="{StaticResource DisplayText}">:</Label>
+            <Label Style="{StaticResource DisplayText}" Margin="0,-20,0,0">:</Label>
             <TextBox Name="SecondsBox" Style="{StaticResource CountDownBox}">20</TextBox>
 
         </WrapPanel>

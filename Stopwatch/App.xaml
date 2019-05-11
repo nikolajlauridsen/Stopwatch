@@ -82,11 +82,9 @@
             <Setter Property="Foreground" Value="{StaticResource PrimaryFore}"></Setter>
             <Setter Property="BorderThickness" Value="0"></Setter>
             <Setter Property="BorderBrush" Value="Transparent"></Setter>
-            <Setter Property="Margin" Value="0,19,0,0"></Setter>
             <Setter Property="Width" Value="160"></Setter>
-            <Setter Property="Height" Value="200"></Setter>
             <Setter Property="CaretBrush" Value="{StaticResource PrimaryFore}"></Setter>
-            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+            <Setter Property="TextAlignment" Value="Center"></Setter>
 
         </Style>
 
