@@ -34,9 +34,9 @@ namespace Stopwatch
 
         private void _updateTime(TimeSpan remainingTime)
         {
-            HoursBox.Text = remainingTime.Hours.ToString();
-            MinutesBox.Text = remainingTime.Minutes.ToString();
-            SecondsBox.Text = remainingTime.Seconds.ToString();
+            HoursBox.Text = remainingTime.Hours.ToString("00");
+            MinutesBox.Text = remainingTime.Minutes.ToString("00");
+            SecondsBox.Text = remainingTime.Seconds.ToString("00");
 
         }
 
