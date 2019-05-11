@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mime;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -56,7 +57,38 @@ namespace Stopwatch
                 _timer.Pause();
                 StartBtn.Content = "Start";
             }
-            
         }
+
+        private void validateMinutesSeconds(object sender, TextCompositionEventArgs e)
+        {
+            TextBox selectedBox = sender as TextBox;
+            if (selectedBox.SelectedText == selectedBox.Text) selectedBox.Text = "";;
+            e.Handled = !isMinutesSeconds((selectedBox.Text + e.Text));
+        }
+
+        private void validateHours(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !IsHours((sender as TextBox).Text + e.Text);
+        }
+
+        private void filterSpace(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space) {
+                e.Handled = true;
+            }
+        }
+
+        private static bool isMinutesSeconds(string str)
+        {
+            int input;
+            return int.TryParse(str, out input) && input >= 0 && input <= 60;
+        }
+
+        private static bool IsHours(string str)
+        {
+            int input;
+            return int.TryParse(str, out input) && input >= 0;
+        }
+
     }
 }
