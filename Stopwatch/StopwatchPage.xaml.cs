@@ -31,19 +31,32 @@ namespace Stopwatch
             InitializeComponent();
             _watch = watch;
             _watch.SetUpdateEvent(DispatchUpdate);
-            _watch.SetMilisecondDigits(Settings.Default.MiliDigits);
+            
             timeLbl.Content = _watch.Elapsed.ToString(_watch.FormatString);
             // Set up high level hooks
             _hooks = hooks;
             _hooks.RegisterHook(Key.S, key => Dispatcher.Invoke(() => OnStartPause(_hooks, null)));
             _hooks.RegisterHook(Key.R, key => Dispatcher.Invoke(() => OnReset(_hooks, null)));
+
             if (Settings.Default.GlobalKeybinds) {
                 _hooks.Listen();
             }
 
+            applySettings();
+            UpdateLabel(new TimeSpan(0));
+
             // On clicks
             StartBtn.Click += OnStartPause;
             StopBtn.Click += OnReset;
+        }
+
+        private void applySettings()
+        {
+            _watch.SetMilisecondDigits(Settings.Default.MiliDigits);
+            _watch.UpdateDelay = Settings.Default.UpdateDelay;
+            if (Settings.Default.GlobalKeybinds) {
+                _hooks.Listen();
+            }
         }
 
         private void DispatchUpdate(TimeSpan time)
