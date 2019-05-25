@@ -35,10 +35,9 @@ namespace Stopwatch
             timeLbl.Content = _watch.Elapsed.ToString(_watch.FormatString);
             // Set up high level hooks
             _hooks = hooks;
-            _hooks.RegisterHook(Settings.Default.StartKey, key => Dispatcher.Invoke(() => OnStartPause(_hooks, null)));
-            _hooks.RegisterHook(Settings.Default.ResetKey, key => Dispatcher.Invoke(() => OnReset(_hooks, null)));
+            
 
-            applySettings();
+            ApplySettings();
             UpdateLabel(new TimeSpan(0));
 
             // On clicks
@@ -46,11 +45,15 @@ namespace Stopwatch
             StopBtn.Click += OnReset;
         }
 
-        private void applySettings()
+        public void ApplySettings()
         {
             _watch.SetMilisecondDigits(Settings.Default.MiliDigits);
             _watch.UpdateDelay = Settings.Default.UpdateDelay;
-            if (Settings.Default.GlobalKeybinds) {
+
+            _hooks.RegisterHook(Settings.Default.StartKey, key => Dispatcher.Invoke(() => OnStartPause(_hooks, null)));
+            _hooks.RegisterHook(Settings.Default.ResetKey, key => Dispatcher.Invoke(() => OnReset(_hooks, null)));
+
+            if (Settings.Default.GlobalKeybinds && !_hooks.Listening) {
                 _hooks.Listen();
             }
         }

@@ -25,15 +25,21 @@ namespace Stopwatch
     {
         private HookManager _hooks;
         private StopWatch _watch;
+
+        public Action ApplySettings;
         public SettingsWindow(StopWatch watch, HookManager hooks)
         {
             InitializeComponent();
+
             _hooks = hooks;
             _watch = watch;
 
             KeybindingsToggle.IsChecked = hooks.Listening;
             DigitsBox.SelectedIndex = Settings.Default.MiliDigits;
             DelayBox.Text = Settings.Default.UpdateDelay.ToString();
+
+            Startbind.Text = Settings.Default.StartKey;
+            Resetbind.Text = Settings.Default.ResetKey;
 
             KeybindingsToggle.Checked += (sender, e) =>
             {
@@ -66,7 +72,35 @@ namespace Stopwatch
                 }
             };
 
+            Startbind.KeyUp += (sender, e) =>
+            {
+                if (Startbind.IsFocused)
+                {
+                    KeyConverter keyConverter = new KeyConverter();
+                    _hooks.DisableHook((Key)keyConverter.ConvertFromString(Settings.Default.StartKey));
+                    string startKey = keyConverter.ConvertToString(e.Key);
+                    Startbind.Text = startKey;
+                    e.Handled = true;
+                    Settings.Default.StartKey = startKey;
+                    ApplySettings.Invoke();
+                }
+            };
+
+            Resetbind.KeyUp += (sender, e) => 
+            {
+                if (Resetbind.IsFocused) {
+                    KeyConverter keyConverter = new KeyConverter();
+                    _hooks.DisableHook((Key)keyConverter.ConvertFromString(Settings.Default.ResetKey));
+                    string resetKey = keyConverter.ConvertToString(e.Key);
+                    Resetbind.Text = resetKey;
+                    e.Handled = true;
+                    Settings.Default.ResetKey = resetKey;
+                    ApplySettings.Invoke();
+                }
+            };
+
             this.Closed += (sender, e) => Settings.Default.Save();
         }
+
     }
 }

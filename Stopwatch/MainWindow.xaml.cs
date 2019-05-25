@@ -33,9 +33,14 @@ namespace Stopwatch
             _pages.Add(new StopwatchPage(_watch, _hooks));
             _pages.Add(new CountdownPage(_timer));
             ContentFrame.Navigate(_pages[0]);
-            
 
-            SettingsBtn.Click += (sender, e) => new SettingsWindow(_watch, _hooks).Show();
+
+            SettingsBtn.Click += (sender, e) =>
+            {
+                SettingsWindow settingsWin = new SettingsWindow(_watch, _hooks);
+                settingsWin.ApplySettings += ((StopwatchPage) _pages[0]).ApplySettings;
+                settingsWin.Show();
+            };
 
             SwapBtn.Click += (sender, e) =>
             {

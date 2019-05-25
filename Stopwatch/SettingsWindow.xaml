@@ -12,7 +12,17 @@
             <Label Style="{StaticResource SmallText}">Keybindings</Label>
             <CheckBox Style="{StaticResource DarkCheck}" VerticalAlignment="Center" Margin="5,4,0,0" Name="KeybindingsToggle" IsChecked="True"></CheckBox>
         </WrapPanel>
-        
+
+        <WrapPanel HorizontalAlignment="Center" DockPanel.Dock="Top" Margin="5">
+            <Label Style="{StaticResource SmallText}">Start button</Label>
+            <TextBox Style="{StaticResource TextInput}" HorizontalContentAlignment="Center" Name="Startbind"></TextBox>
+        </WrapPanel>
+
+        <WrapPanel HorizontalAlignment="Center" DockPanel.Dock="Top" Margin="5">
+            <Label Style="{StaticResource SmallText}">Reset button</Label>
+            <TextBox Style="{StaticResource TextInput}" HorizontalContentAlignment="Center" Name="Resetbind"></TextBox>
+        </WrapPanel>
+
         <WrapPanel HorizontalAlignment="Center" DockPanel.Dock="Top" Margin="5">
             <Label Style="{StaticResource SmallText}" Margin="5">Milliseconds digits</Label>
             <ComboBox Name="DigitsBox" Style="{StaticResource DropDown}">
