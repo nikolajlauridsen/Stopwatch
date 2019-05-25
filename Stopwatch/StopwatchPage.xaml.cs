@@ -38,10 +38,6 @@ namespace Stopwatch
             _hooks.RegisterHook(Key.S, key => Dispatcher.Invoke(() => OnStartPause(_hooks, null)));
             _hooks.RegisterHook(Key.R, key => Dispatcher.Invoke(() => OnReset(_hooks, null)));
 
-            if (Settings.Default.GlobalKeybinds) {
-                _hooks.Listen();
-            }
-
             applySettings();
             UpdateLabel(new TimeSpan(0));
 
