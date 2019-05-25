@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,6 +24,13 @@ namespace KeyboardHook
         public void RegisterHook(Key targetKey, Action<Key> keyAction, bool singleFire = true)
         {
             _hooks.Add(new Hook(targetKey, keyAction, singleFire));
+        }
+
+        public void RegisterHook(string targetKey, Action<Key> keyAction, bool singleFire = true)
+        {
+            KeyConverter converter = new KeyConverter();
+            Key _key = (Key) converter.ConvertFromString(targetKey);
+            RegisterHook(_key, keyAction, singleFire);
         }
 
         public void RegisterHook(Key targetKey, Key modifier, Action<Key> keyAction, bool singleFire = true)

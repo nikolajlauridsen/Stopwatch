@@ -11,5 +11,11 @@
     <Setting Name="UpdateDelay" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">50</Value>
     </Setting>
+    <Setting Name="StartKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">s</Value>
+    </Setting>
+    <Setting Name="ResetKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">r</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

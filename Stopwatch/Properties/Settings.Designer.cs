@@ -58,5 +58,29 @@ namespace Stopwatch.Properties {
                 this["UpdateDelay"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("s")]
+        public string StartKey {
+            get {
+                return ((string)(this["StartKey"]));
+            }
+            set {
+                this["StartKey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("r")]
+        public string ResetKey {
+            get {
+                return ((string)(this["ResetKey"]));
+            }
+            set {
+                this["ResetKey"] = value;
+            }
+        }
     }
 }

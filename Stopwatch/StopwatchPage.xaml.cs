@@ -35,8 +35,8 @@ namespace Stopwatch
             timeLbl.Content = _watch.Elapsed.ToString(_watch.FormatString);
             // Set up high level hooks
             _hooks = hooks;
-            _hooks.RegisterHook(Key.S, key => Dispatcher.Invoke(() => OnStartPause(_hooks, null)));
-            _hooks.RegisterHook(Key.R, key => Dispatcher.Invoke(() => OnReset(_hooks, null)));
+            _hooks.RegisterHook(Settings.Default.StartKey, key => Dispatcher.Invoke(() => OnStartPause(_hooks, null)));
+            _hooks.RegisterHook(Settings.Default.ResetKey, key => Dispatcher.Invoke(() => OnReset(_hooks, null)));
 
             applySettings();
             UpdateLabel(new TimeSpan(0));
