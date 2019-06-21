@@ -20,7 +20,7 @@
 
         <WrapPanel DockPanel.Dock="Top" HorizontalAlignment="Center">
             <Button Style="{StaticResource PrettyButton}" Name="StartBtn">Start</Button>
-            <Button Style="{StaticResource PrettyButton}" Name="ReseBtn">Reset</Button>
+            <Button Style="{StaticResource PrettyButton}" Name="ResetBtn">Reset</Button>
         </WrapPanel>
     </DockPanel>
 </Page>
