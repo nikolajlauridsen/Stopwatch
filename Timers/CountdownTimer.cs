@@ -17,7 +17,26 @@ namespace Timers
 
         public int UpdateDelay = 50;
 
-        public bool Running { get; private set; }
+        private object _runningLock = new object();
+        public bool Running
+        {
+            get
+            {
+                lock (_runningLock)
+                {
+                    return _running;
+                }
+            }
+            private set
+            {
+                lock (_runningLock)
+                {
+                    _running = value;
+                }
+            }
+        }
+
+        private bool _running;
 
         public bool Finished
         {
@@ -113,7 +132,10 @@ namespace Timers
             while (Running)
             {
                 _updateAction?.Invoke(Remaining);
-                if (DateTime.Now >= _endTime && AutoStop) Running = false;
+                if (DateTime.Now >= _endTime && AutoStop)
+                {
+                    Running = false;
+                }
                 Thread.Sleep(UpdateDelay);
             }
             _onFinish?.Invoke();

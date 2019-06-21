@@ -28,7 +28,7 @@ namespace Stopwatch
             InitializeComponent();
 
             _timer = timer;
-            _timer.SetUpdateAction(span => Dispatcher.Invoke(() =>_updateTime(span)));
+            _timer.SetUpdateAction(span => Dispatcher.Invoke(() => _updateTime(span)));
             _timer.SetOnFinishedAction(() => Dispatcher.Invoke(()=> StartBtn.Content = "Start"));
             StartBtn.Click += (sender, e) => _startTimer();
             ResetBtn.Click += (sender, e) => _ResetTimer();
@@ -36,10 +36,12 @@ namespace Stopwatch
 
         private void _updateTime(TimeSpan remainingTime)
         {
-            HoursBox.Text = remainingTime.Hours.ToString("00");
-            MinutesBox.Text = remainingTime.Minutes.ToString("00");
-            SecondsBox.Text = remainingTime.Seconds.ToString("00");
-
+            if (_timer.Running)
+            {
+                HoursBox.Text = remainingTime.Hours.ToString("00");
+                MinutesBox.Text = remainingTime.Minutes.ToString("00");
+                SecondsBox.Text = remainingTime.Seconds.ToString("00");
+            }
         }
 
         private void _startTimer()
@@ -70,7 +72,6 @@ namespace Stopwatch
             HoursBox.Text = "00";
             MinutesBox.Text = "00";
             SecondsBox.Text = "00";
-
         }
 
         private void validateMinutesSeconds(object sender, TextCompositionEventArgs e)
