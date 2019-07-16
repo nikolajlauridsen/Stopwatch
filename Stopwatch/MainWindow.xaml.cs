@@ -49,10 +49,12 @@ namespace Stopwatch
                     ContentFrame.Navigate(_pages[1]);
                     _selectedPage = 1;
                     SwapBtn.Content = "Stopwatch";
+                    if(_hooks.Listening) _hooks.StopListening();
                 } else if (_selectedPage == 1)
                 {
                     ContentFrame.Navigate(_pages[0]);
                     _selectedPage = 0;
+                    if(Settings.Default.GlobalKeybinds) _hooks.Listen();
                     SwapBtn.Content = "Timer";
                 }
             };

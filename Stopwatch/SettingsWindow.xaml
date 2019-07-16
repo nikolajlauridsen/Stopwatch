@@ -8,8 +8,9 @@
         Title="Settings" Style="{StaticResource WindowStyle}" SizeToContent="WidthAndHeight">
 
     <DockPanel VerticalAlignment="Center" Margin="20,10,20,10">
+        <Label DockPanel.Dock="Top" Style="{StaticResource SmallText}" HorizontalAlignment="Center" FontSize="16">Stopwatch settings</Label>
         <WrapPanel HorizontalAlignment="Center" DockPanel.Dock="Top" Margin="5">
-            <Label Style="{StaticResource SmallText}">Keybindings</Label>
+            <Label Style="{StaticResource SmallText}">Gloval keybindings</Label>
             <CheckBox Style="{StaticResource DarkCheck}" VerticalAlignment="Center" Margin="5,4,0,0" Name="KeybindingsToggle" IsChecked="True"></CheckBox>
         </WrapPanel>
 
