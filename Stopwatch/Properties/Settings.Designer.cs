@@ -82,5 +82,17 @@ namespace Stopwatch.Properties {
                 this["ResetKey"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool TimerKeys {
+            get {
+                return ((bool)(this["TimerKeys"]));
+            }
+            set {
+                this["TimerKeys"] = value;
+            }
+        }
     }
 }

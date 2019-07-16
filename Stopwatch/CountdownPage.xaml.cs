@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mime;
+using System.Runtime.Remoting.Channels;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Serialization;
+using Stopwatch.Properties;
 using Timers;
 
 namespace Stopwatch
@@ -32,6 +35,30 @@ namespace Stopwatch
             _timer.SetOnFinishedAction(() => Dispatcher.Invoke(()=> StartBtn.Content = "Start"));
             StartBtn.Click += (sender, e) => _startTimer();
             ResetBtn.Click += (sender, e) => _ResetTimer();
+            ApplySettings();
+        }
+
+        public void ApplySettings()
+        {
+            if (Settings.Default.TimerKeys)
+            {
+                this.KeyUp += _handleKeyUp;
+            }
+            else
+            {
+                this.KeyUp -= _handleKeyUp;
+            }
+        }
+
+        private void _handleKeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.S)
+            {
+                _startTimer();
+            } else if (e.Key == Key.R)
+            {
+                _ResetTimer();
+            }
         }
 
         private void _updateTime(TimeSpan remainingTime)

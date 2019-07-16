@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -35,6 +36,7 @@ namespace Stopwatch
             _watch = watch;
 
             KeybindingsToggle.IsChecked = hooks.Listening;
+            TimerKeybindingsToggle.IsChecked = Settings.Default.TimerKeys;
             DigitsBox.SelectedIndex = Settings.Default.MiliDigits;
             DelayBox.Text = Settings.Default.UpdateDelay.ToString();
 
@@ -100,7 +102,18 @@ namespace Stopwatch
             };
 
             this.Closed += (sender, e) => Settings.Default.Save();
-        }
 
+            TimerKeybindingsToggle.Checked += (sender, e) =>
+            {
+                Settings.Default.TimerKeys = true;
+                ApplySettings.Invoke();
+            };
+            TimerKeybindingsToggle.Unchecked += (sender, e) =>
+            {
+                Settings.Default.TimerKeys = false;
+                ApplySettings.Invoke();
+            };
+        }
+        
     }
 }

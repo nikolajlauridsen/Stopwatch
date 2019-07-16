@@ -39,6 +39,7 @@ namespace Stopwatch
             {
                 SettingsWindow settingsWin = new SettingsWindow(_watch, _hooks);
                 settingsWin.ApplySettings += ((StopwatchPage) _pages[0]).ApplySettings;
+                settingsWin.ApplySettings += ((CountdownPage) _pages[1]).ApplySettings;
                 settingsWin.Show();
             };
 
@@ -54,7 +55,7 @@ namespace Stopwatch
                 {
                     ContentFrame.Navigate(_pages[0]);
                     _selectedPage = 0;
-                    if(Settings.Default.GlobalKeybinds) _hooks.Listen();
+                    if(Settings.Default.GlobalKeybinds && !_hooks.Listening) _hooks.Listen();
                     SwapBtn.Content = "Timer";
                 }
             };
