@@ -37,7 +37,7 @@ namespace Stopwatch
 
             SettingsBtn.Click += (sender, e) =>
             {
-                SettingsWindow settingsWin = new SettingsWindow(_watch, _hooks);
+                SettingsWindow settingsWin = new SettingsWindow(_hooks);
                 settingsWin.ApplySettings += ((StopwatchPage) _pages[0]).ApplySettings;
                 settingsWin.ApplySettings += ((CountdownPage) _pages[1]).ApplySettings;
                 settingsWin.Show();

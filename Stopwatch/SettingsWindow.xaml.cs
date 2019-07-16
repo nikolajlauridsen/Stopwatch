@@ -25,15 +25,13 @@ namespace Stopwatch
     public partial class SettingsWindow : Window
     {
         private HookManager _hooks;
-        private StopWatch _watch;
 
         public Action ApplySettings;
-        public SettingsWindow(StopWatch watch, HookManager hooks)
+        public SettingsWindow(HookManager hooks)
         {
             InitializeComponent();
 
             _hooks = hooks;
-            _watch = watch;
 
             KeybindingsToggle.IsChecked = hooks.Listening;
             TimerKeybindingsToggle.IsChecked = Settings.Default.TimerKeys;
@@ -60,8 +58,7 @@ namespace Stopwatch
                 // Jesus christ this is ugly and smells, but ey, it works
                 int digits = int.Parse(((ComboBoxItem) DigitsBox.SelectedItem).Content.ToString());
                 Settings.Default.MiliDigits = digits;
-                _watch.SetMilisecondDigits(digits);
-                _watch.ForceUpdate();
+                ApplySettings.Invoke();
             };
 
             DelayBox.TextChanged += (sender, e) =>
@@ -69,8 +66,8 @@ namespace Stopwatch
                 int milli;
                 if (int.TryParse(DelayBox.Text, out milli))
                 {
-                    _watch.UpdateDelay = milli;
                     Settings.Default.UpdateDelay = milli;
+                    ApplySettings.Invoke();
                 }
             };
 

@@ -56,6 +56,7 @@ namespace Stopwatch
             if (Settings.Default.GlobalKeybinds && !_hooks.Listening) {
                 _hooks.Listen();
             }
+            _watch.ForceUpdate();
         }
 
         private void DispatchUpdate(TimeSpan time)
