@@ -25,6 +25,8 @@ namespace Stopwatch
     /// </summary>
     public partial class CountdownPage : Page
     {
+        private static string _warningColor = "PrimaryWarning";
+        private static string _foreColor = "PrimaryFore";
         private CountdownTimer _timer;
         public CountdownPage(CountdownTimer timer)
         {
@@ -32,7 +34,19 @@ namespace Stopwatch
 
             _timer = timer;
             _timer.SetUpdateAction(span => Dispatcher.Invoke(() => _updateTime(span)));
-            _timer.SetOnFinishedAction(() => Dispatcher.Invoke(()=> StartBtn.Content = "Start"));
+            // TODO: Reset color here....
+            _timer.SetOnStoppedAction(() => Dispatcher.Invoke(()=> {StartBtn.Content = "Start"));
+            _timer.SetOnFinishedAction(() => Dispatcher.Invoke(()=>
+            {
+                UserControl uc = new UserControl();
+                Brush warningBrush = (Brush)uc.TryFindResource(_warningColor);
+                HoursBox.Foreground = warningBrush;
+                HourSeperator.Foreground = warningBrush;
+                MinuteSeperator.Foreground = warningBrush;
+                MinutesBox.Foreground = warningBrush;
+                SecondsBox.Foreground = warningBrush;
+            }));
+            _timer.AutoStop = false;
             StartBtn.Click += (sender, e) => _startTimer();
             ResetBtn.Click += (sender, e) => _ResetTimer();
             ApplySettings();
@@ -65,9 +79,9 @@ namespace Stopwatch
         {
             if (_timer.Running)
             {
-                HoursBox.Text = remainingTime.Hours.ToString("00");
-                MinutesBox.Text = remainingTime.Minutes.ToString("00");
-                SecondsBox.Text = remainingTime.Seconds.ToString("00");
+                HoursBox.Text = Math.Abs(remainingTime.Hours).ToString("00");
+                MinutesBox.Text = Math.Abs(remainingTime.Minutes).ToString("00");
+                SecondsBox.Text = Math.Abs(remainingTime.Seconds).ToString("00");
             }
         }
 

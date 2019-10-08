@@ -11,9 +11,9 @@
     <DockPanel>
         <WrapPanel HorizontalAlignment="Center" DockPanel.Dock="Top" VerticalAlignment="Center">
             <TextBox Name="HoursBox" Style="{StaticResource CountDownBox}" PreviewTextInput="validateHours" PreviewKeyDown="filterSpace">00</TextBox>
-            <Label Style="{StaticResource DisplayText}" Margin="0,-0,0,0">:</Label>
+            <Label Name="HourSeperator" Style="{StaticResource DisplayText}" Margin="0,-0,0,0">:</Label>
             <TextBox Name="MinutesBox" Style="{StaticResource CountDownBox}" PreviewTextInput="validateMinutesSeconds" PreviewKeyDown="filterSpace">00</TextBox>
-            <Label Style="{StaticResource DisplayText}" Margin="0,-0,0,0">:</Label>
+            <Label Name="MinuteSeperator" Style="{StaticResource DisplayText}" Margin="0,-0,0,0">:</Label>
             <TextBox Name="SecondsBox" Style="{StaticResource CountDownBox}" PreviewTextInput="validateMinutesSeconds" PreviewKeyDown="filterSpace">00</TextBox>
 
         </WrapPanel>

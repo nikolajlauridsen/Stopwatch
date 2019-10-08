@@ -54,12 +54,14 @@ namespace Timers
         }
 
         public bool AutoStop = true;
+        private bool OnFinishedEvoked = false;
 
         private DateTime _startTime;
         private DateTime _endTime;
         public TimeSpan Duration { get; private set; }
         private Action<TimeSpan> _updateAction;
-        private Action _onFinish;
+        private Action _onStopped;
+        private Action _onFinished;
 
         public CountdownTimer(Action<TimeSpan> updateAction)
         {
@@ -80,9 +82,14 @@ namespace Timers
             _updateAction = updateAction;
         }
 
-        public void SetOnFinishedAction(Action finishAction)
+        public void SetOnStoppedAction(Action stoppedAction)
         {
-            _onFinish = finishAction;
+            _onStopped = stoppedAction;
+        }
+
+        public void SetOnFinishedAction(Action finishedAction)
+        {
+            _onFinished = finishedAction;
         }
 
 
@@ -132,13 +139,24 @@ namespace Timers
             while (Running)
             {
                 _updateAction?.Invoke(Remaining);
-                if (DateTime.Now >= _endTime && AutoStop)
+                if (Finished)
                 {
-                    Running = false;
+                    if (AutoStop)
+                    {
+                        Running = false;
+                    }
+
+                    if (!OnFinishedEvoked)
+                    {
+                        _onFinished?.Invoke();
+                        OnFinishedEvoked = true;
+                    }
+                    
                 }
                 Thread.Sleep(UpdateDelay);
             }
-            _onFinish?.Invoke();
+            OnFinishedEvoked = false;
+            _onStopped?.Invoke();
         }
 
         private void _finishWatcherWork()
@@ -147,7 +165,7 @@ namespace Timers
                 Thread.Sleep(UpdateDelay);
             }
 
-            _onFinish();
+            _onStopped();
         }
     }
 }
