@@ -35,17 +35,11 @@ namespace Stopwatch
             _timer = timer;
             _timer.SetUpdateAction(span => Dispatcher.Invoke(() => _updateTime(span)));
             // TODO: Reset color here....
-            _timer.SetOnStoppedAction(() => Dispatcher.Invoke(()=> {StartBtn.Content = "Start"));
-            _timer.SetOnFinishedAction(() => Dispatcher.Invoke(()=>
-            {
-                UserControl uc = new UserControl();
-                Brush warningBrush = (Brush)uc.TryFindResource(_warningColor);
-                HoursBox.Foreground = warningBrush;
-                HourSeperator.Foreground = warningBrush;
-                MinuteSeperator.Foreground = warningBrush;
-                MinutesBox.Foreground = warningBrush;
-                SecondsBox.Foreground = warningBrush;
+            _timer.SetOnStoppedAction(() => Dispatcher.Invoke(()=> {
+                StartBtn.Content = "Start";
+                _changeTimerColor(_foreColor);
             }));
+            _timer.SetOnFinishedAction(() => _changeTimerColor(_warningColor));
             _timer.AutoStop = false;
             StartBtn.Click += (sender, e) => _startTimer();
             ResetBtn.Click += (sender, e) => _ResetTimer();
@@ -62,6 +56,20 @@ namespace Stopwatch
             {
                 this.KeyUp -= _handleKeyUp;
             }
+        }
+
+        private void _changeTimerColor(String resourceString)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                UserControl uc = new UserControl();
+                Brush color = (Brush)uc.TryFindResource(resourceString);
+                HoursBox.Foreground = color;
+                HourSeperator.Foreground = color;
+                MinuteSeperator.Foreground = color;
+                MinutesBox.Foreground = color;
+                SecondsBox.Foreground = color;
+            });
         }
 
         private void _handleKeyUp(object sender, KeyEventArgs e)
