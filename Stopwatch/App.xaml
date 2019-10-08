@@ -8,7 +8,7 @@
         <Brush x:Key="PrimaryBack">#282828</Brush>
         <Brush x:Key="SecondaryBack">#323232</Brush>
         <Brush x:Key="PrimaryFore">#779933</Brush>
-        <Brush x:Key="PrimaryWarning">#FF3F80</Brush>
+        <Brush x:Key="PrimaryWarning">#FF3333</Brush>
 
         <Style TargetType="Window" x:Key="WindowStyle">
             <Setter Property="Height" Value="350"></Setter>
