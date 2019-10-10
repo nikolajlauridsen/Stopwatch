@@ -15,13 +15,14 @@ using System.Windows.Shapes;
 using KeyboardHook;
 using Stopwatch.Properties;
 using Timers;
+using Stopwatch.Interfaces;
 
 namespace Stopwatch
 {
     /// <summary>
     /// Interaction logic for StopwatchPage.xaml
     /// </summary>
-    public partial class StopwatchPage : Page
+    public partial class StopwatchPage : Page, SettingsSubscriber
     {
         private StopWatch _watch;
         private HookManager _hooks;
@@ -37,7 +38,7 @@ namespace Stopwatch
             _hooks = hooks;
             
 
-            ApplySettings();
+            SettingsChanged();
             UpdateLabel(new TimeSpan(0));
 
             // On clicks
@@ -45,7 +46,7 @@ namespace Stopwatch
             StopBtn.Click += OnReset;
         }
 
-        public void ApplySettings()
+        public void SettingsChanged()
         {
             _watch.SetMilisecondDigits(Settings.Default.MiliDigits);
             _watch.UpdateDelay = Settings.Default.UpdateDelay;

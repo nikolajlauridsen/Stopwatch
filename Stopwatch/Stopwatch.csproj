@@ -58,6 +58,8 @@
     <Compile Include="CountdownPage.xaml.cs">
       <DependentUpon>CountdownPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\SettingsSubscriber.cs" />
+    <Compile Include="Interfaces\SettingsPublisher.cs" />
     <Compile Include="SettingsWindow.xaml.cs">
       <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>

@@ -9,6 +9,7 @@ using System.Windows.Input;
 using KeyboardHook;
 using Timers;
 using Stopwatch.Properties;
+using Stopwatch.Interfaces;
 
 namespace Stopwatch
 {
@@ -38,8 +39,13 @@ namespace Stopwatch
             SettingsBtn.Click += (sender, e) =>
             {
                 SettingsWindow settingsWin = new SettingsWindow(_hooks);
-                settingsWin.ApplySettings += ((StopwatchPage) _pages[0]).ApplySettings;
-                settingsWin.ApplySettings += ((CountdownPage) _pages[1]).ApplySettings;
+                foreach(Page p in _pages)
+                {
+                    if(p is SettingsSubscriber)
+                    {
+                        settingsWin.AddSubscriber(p as SettingsSubscriber);
+                    }
+                }
                 settingsWin.Show();
             };
 

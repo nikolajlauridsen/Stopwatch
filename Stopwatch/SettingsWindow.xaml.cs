@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Stopwatch.Interfaces;
 
 using KeyboardHook;
 using Timers;
@@ -22,11 +23,11 @@ namespace Stopwatch
     /// <summary>
     /// Interaction logic for SettingsWindow.xaml
     /// </summary>
-    public partial class SettingsWindow : Window
+    public partial class SettingsWindow : Window, SettingsPublisher
     {
         private HookManager _hooks;
+        private List<SettingsSubscriber> _subscribers = new List<SettingsSubscriber>();
 
-        public Action ApplySettings;
         public SettingsWindow(HookManager hooks)
         {
             InitializeComponent();
@@ -58,7 +59,7 @@ namespace Stopwatch
                 // Jesus christ this is ugly and smells, but ey, it works
                 int digits = int.Parse(((ComboBoxItem) DigitsBox.SelectedItem).Content.ToString());
                 Settings.Default.MiliDigits = digits;
-                ApplySettings.Invoke();
+                NotifySubscribers();
             };
 
             DelayBox.TextChanged += (sender, e) =>
@@ -67,7 +68,7 @@ namespace Stopwatch
                 if (int.TryParse(DelayBox.Text, out milli))
                 {
                     Settings.Default.UpdateDelay = milli;
-                    ApplySettings.Invoke();
+                    NotifySubscribers();
                 }
             };
 
@@ -81,7 +82,7 @@ namespace Stopwatch
                     Startbind.Text = startKey;
                     e.Handled = true;
                     Settings.Default.StartKey = startKey;
-                    ApplySettings.Invoke();
+                    NotifySubscribers();
                 }
             };
 
@@ -94,7 +95,7 @@ namespace Stopwatch
                     Resetbind.Text = resetKey;
                     e.Handled = true;
                     Settings.Default.ResetKey = resetKey;
-                    ApplySettings.Invoke();
+                    NotifySubscribers();
                 }
             };
 
@@ -103,14 +104,26 @@ namespace Stopwatch
             TimerKeybindingsToggle.Checked += (sender, e) =>
             {
                 Settings.Default.TimerKeys = true;
-                ApplySettings.Invoke();
+                NotifySubscribers();
             };
             TimerKeybindingsToggle.Unchecked += (sender, e) =>
             {
                 Settings.Default.TimerKeys = false;
-                ApplySettings.Invoke();
+                NotifySubscribers();
             };
         }
-        
+
+        public void AddSubscriber(SettingsSubscriber subscriber)
+        {
+            _subscribers.Add(subscriber);
+        }
+
+        public void NotifySubscribers()
+        {
+            foreach(SettingsSubscriber sub in _subscribers)
+            {
+                sub.SettingsChanged();
+            }
+        }
     }
 }

@@ -17,13 +17,14 @@ using System.Windows.Shapes;
 using System.Xml.Serialization;
 using Stopwatch.Properties;
 using Timers;
+using Stopwatch.Interfaces;
 
 namespace Stopwatch
 {
     /// <summary>
     /// Interaction logic for CountdownPage.xaml
     /// </summary>
-    public partial class CountdownPage : Page
+    public partial class CountdownPage : Page, SettingsSubscriber
     {
         private static string _warningColor = "PrimaryWarning";
         private static string _foreColor = "PrimaryFore";
@@ -43,10 +44,10 @@ namespace Stopwatch
             _timer.AutoStop = false;
             StartBtn.Click += (sender, e) => _startTimer();
             ResetBtn.Click += (sender, e) => _ResetTimer();
-            ApplySettings();
+            SettingsChanged();
         }
 
-        public void ApplySettings()
+        public void SettingsChanged()
         {
             if (Settings.Default.TimerKeys)
             {
